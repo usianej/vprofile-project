@@ -9,6 +9,8 @@ pipeline {
 
     environment {
         SNAP_REPO = "bimodal-snapshot"
+        NEXUS_USER = "admin"
+        NEXUS_PASS = "admin123"
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
         NEXUSIP = '54.157.239.106'
@@ -28,6 +30,28 @@ pipeline {
         stage('BUILD'){
             steps {
                 sh 'mvn -s settings.xml -DskipTests install'
+            }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
+        }
+
+        stage('UNIT TEST'){
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Checkstyle Analysis'){
+            steps {
+                sh 'mvn checkstyle:checkstyle'
+            }
+            post {
+                success {
+                    echo 'Checkstyle Analysis done successfully'
+                }
             }
         }
     }
