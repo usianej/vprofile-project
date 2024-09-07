@@ -9,6 +9,8 @@ pipeline {
 
     environment {
         SNAP_REPO = "bimodal-snapshot"
+        NEXUS_USER = "admin"
+        NEXUS_PASS = "admin123"
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
         NEXUSIP = '172.31.24.199'
