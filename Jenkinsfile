@@ -15,7 +15,7 @@ pipeline {
         CENTRAL_REPO = "bimodal-maven-central"
         NEXUSIP = '54.157.239.106'
         NEXUSPORT = '8081'
-        NEXUS_GRP_REPO = "bimodal-group"
+        NEXUS_GRP_REPO = "bimodal-maven-group"
         NEXUS_LOGIN = "nexuslogin"
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
