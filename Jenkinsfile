@@ -9,17 +9,15 @@ pipeline {
 
     environment {
         SNAP_REPO = "bimodal-snapshot"
-        NEXUS_USER = "admin"
-        NEXUS_PASS = "admin123"
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
-        NEXUSIP = '172.31.24.199'
+        NEXUSIP = '54.157.239.106'
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = "bimodal-group"
         NEXUS_LOGIN = "nexuslogin"
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "172.31.24.199:8081"
+        NEXUS_URL = "54.157.239.106:8081"
 	    NEXUS_REPOGRP_ID    = "bimodal-maven-group"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
