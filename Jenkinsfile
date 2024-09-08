@@ -13,17 +13,17 @@ pipeline {
 
     environment {
         SNAP_REPO = "bimodal-snapshot"
-        NEXUS_USER = "admin"
-        NEXUS_PASS = "admin123"
+        //NEXUS_USER = "admin"
+        //NEXUS_PASS = "admin123"
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
-        NEXUSIP = '3.91.216.51'
+        NEXUSIP = '3.93.170.80'
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = "bimodal-maven-group"
         NEXUS_LOGIN = "nexuslogin"
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "3.91.216.51:8081"
+        NEXUS_URL = "3.93.170.80:8081"
 	    NEXUS_REPOGRP_ID    = "bimodal-maven-group"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         SONARSERVER = "sonarserver"
@@ -31,6 +31,18 @@ pipeline {
     }
 	
     stages{
+        
+        stage('Setup Environment') {
+            steps {
+                script {
+                  // Inject Nexus Credentials Securely from Jenkins Credentials Manager
+                  withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIAL_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                    env.NEXUS_USER = "${NEXUS_USER}"
+                    env.NEXUS_PASS = "${NEXUS_PASS}"
+                    }
+                }
+            }
+        }
         
         stage('BUILD'){
             steps {
