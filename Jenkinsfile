@@ -49,7 +49,7 @@ pipeline {
                 // Clean target directory
                 sh 'mvn clean'
                 // Optionally remove local dependencies cache (force Maven to re-download dependencies)
-                // sh 'rm -rf ~/.m2/repository'
+                sh 'rm -rf ~/.m2/repository'
             }
         }
         
