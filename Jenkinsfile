@@ -25,7 +25,6 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "3.93.170.80:8081"
 	    NEXUS_REPOGRP_ID    = "bimodal-maven-group"
-        NEXUS_CREDENTIAL_ID = "nexuslogin"
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
     }
@@ -36,13 +35,23 @@ pipeline {
         //    steps {
         //        script {
         //          // Inject Nexus Credentials Securely from Jenkins Credentials Manager
-        //          withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIAL_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+        //          withCredentials([usernamePassword(credentialsId: "${NEXUS_LOGIN}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
         //            env.NEXUS_USER = "${NEXUS_USER}"
         //            env.NEXUS_PASS = "${NEXUS_PASS}"
         //            }
         //        }
         //    }
         //}
+
+        stage('Clean Up') {
+            steps {
+                echo 'Cleaning up Maven cache and previous builds...'
+                // Clean target directory
+                sh 'mvn clean'
+                // Optionally remove local dependencies cache (force Maven to re-download dependencies)
+                // sh 'rm -rf ~/.m2/repository'
+            }
+        }
         
         stage('BUILD'){
             steps {
