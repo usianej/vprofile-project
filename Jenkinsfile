@@ -31,17 +31,17 @@ pipeline {
 	
     stages{
         
-        //stage('Setup Environment') {
-        //    steps {
-        //        script {
-        //          // Inject Nexus Credentials Securely from Jenkins Credentials Manager
-        //          withCredentials([usernamePassword(credentialsId: "${NEXUS_LOGIN}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-        //            env.NEXUS_USER = "${NEXUS_USER}"
-        //            env.NEXUS_PASS = "${NEXUS_PASS}"
-        //            }
-        //        }
-        //    }
-        //}
+        stage('Setup Environment') {
+            steps {
+                script {
+                  // Inject Nexus Credentials Securely from Jenkins Credentials Manager
+                  withCredentials([usernamePassword(credentialsId: "${NEXUS_LOGIN}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                    env.NEXUS_USER = "${NEXUS_USER}"
+                    env.NEXUS_PASS = "${NEXUS_PASS}"
+                    }
+                }
+            }
+        }
 
         stage('Clean Up') {
             steps {
