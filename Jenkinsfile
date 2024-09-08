@@ -22,7 +22,6 @@ pipeline {
         NEXUS_URL = "3.91.216.51:8081"
 	    NEXUS_REPOGRP_ID    = "bimodal-maven-group"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
-        ARTVERSION = "${env.BUILD_ID}"
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
     }
@@ -81,6 +80,26 @@ pipeline {
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
                 }
+            }
+        }
+
+        stage('Upload to Nexus'){
+            steps {
+              nexusArtifactUploader(
+                nexusVersion: 'nexus3',
+                protocol: 'http',
+                nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
+                groupId: 'QA',
+                version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                repository: "${RELEASE_REPO}",
+                credentialsId: ${NEXUS_LOGIN},
+                artifacts: [
+                    [artifactId:'vproapp',
+                     classifier: '',
+                     file: 'target/vprofile-v2.war',
+                     type: 'war']
+                ]
+              )        
             }
         }
     }
