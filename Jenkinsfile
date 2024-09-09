@@ -16,6 +16,7 @@ pipeline {
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
         NEXUSIP = '54.167.34.233'
+        // nice comment 
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = "bimodal-maven-group"
         NEXUS_LOGIN = "nexuslogin"
