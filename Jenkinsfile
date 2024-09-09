@@ -13,17 +13,15 @@ pipeline {
 
     environment {
         SNAP_REPO = "bimodal-snapshot"
-        //NEXUS_USER = "admin"
-        //NEXUS_PASS = "admin123"
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
-        NEXUSIP = '3.93.170.80'
+        NEXUSIP = '54.167.34.233'
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = "bimodal-maven-group"
         NEXUS_LOGIN = "nexuslogin"
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "3.93.170.80:8081"
+        NEXUS_URL = "54.167.34.233:8081"
 	    NEXUS_REPOGRP_ID    = "bimodal-maven-group"
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
@@ -43,15 +41,15 @@ pipeline {
             }
         }
 
-        stage('Clean Up') {
-            steps {
-                echo 'Cleaning up Maven cache and previous builds...'
-                // Clean target directory
-                sh 'mvn clean'
-                // Optionally remove local dependencies cache (force Maven to re-download dependencies)
-                sh 'rm -rf ~/.m2/repository'
-            }
-        }
+        //stage('Clean Up') {
+        //    steps {
+        //        echo 'Cleaning up Maven cache and previous builds...'
+        //        // Clean target directory
+        //        sh 'mvn clean'
+        //        // Optionally remove local dependencies cache (force Maven to re-download dependencies)
+        //        sh 'rm -rf ~/.m2/repository'
+        //    }
+        //}
         
         stage('BUILD'){
             steps {
