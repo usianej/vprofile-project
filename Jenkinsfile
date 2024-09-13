@@ -41,16 +41,16 @@ pipeline {
             }
         }
 
-        //stage('Clean Up') {
-        //    steps {
-        //        echo 'Cleaning up Maven cache and previous builds...'
-        //        // Clean target directory
-        //        sh 'mvn clean'
-        //        // Optionally remove local dependencies cache (force Maven to re-download dependencies)
-        //        sh 'rm -rf ~/.m2/repository'
-        //    }
-        //}
-        
+        stage('Clean Up') {
+            steps {
+                echo 'Cleaning up Maven cache and previous builds...'
+                // Clean target directory
+                sh 'mvn clean'
+                // Optionally remove local dependencies cache (force Maven to re-download dependencies)
+                sh 'rm -rf ~/.m2/repository'
+            }
+        }
+
         stage('BUILD'){
             steps {
                 sh 'mvn -s settings.xml -DskipTests install'
