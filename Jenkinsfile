@@ -15,14 +15,13 @@ pipeline {
         SNAP_REPO = "bimodal-snapshot"
         RELEASE_REPO = "bimodal-release"
         CENTRAL_REPO = "bimodal-maven-central"
-        NEXUSIP = '54.167.34.233'
-        // nice comment 
+        NEXUSIP = '172.31.24.199'
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = "bimodal-maven-group"
         NEXUS_LOGIN = "nexuslogin"
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "54.167.34.233:8081"
+        NEXUS_URL = "172.31.24.199:8081"
 	    NEXUS_REPOGRP_ID    = "bimodal-maven-group"
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
